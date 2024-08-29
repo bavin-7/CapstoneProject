@@ -3,12 +3,13 @@ import { Component, OnInit } from '@angular/core';
 import { StockService } from '../stock.service';
 import { Stock } from '../stock.model';
 import { MarketTrends } from '../market-trends.model';
+import { RouterLink } from '@angular/router';
 
 
 @Component({
   selector: 'app-dashboard',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, RouterLink],
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.css'
 })

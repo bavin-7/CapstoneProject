@@ -1,8 +1,8 @@
 <p>dashboard works!</p>
 <!-- dashboard.component.html -->
-<nav class="navbar">
+<!-- <nav class="navbar">
   <ul>
-    <li><a routerLink="/stocks">Stocks</a></li>
+    <a class="text-decoration-none" [routerLink]="['/stocks']">Stocks</a>
     <li><a routerLink="/portfolio">Portfolio</a></li>
     <li><a (click)="logout()">Logout</a></li>
   </ul>
@@ -25,6 +25,74 @@
       <h4>{{ coin.name }}</h4>
       <p>Price: {{ coin.current_price | currency:'USD' }}</p>
       <p>Market Cap: {{ coin.market_cap | currency:'USD' }}</p>
+    </div>
+  </div>
+</div> -->
+
+<nav class="navbar navbar-expand-lg navbar-light bg-dark-subtle mb-4">
+  <div class="container-fluid">
+    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+      <li class="nav-item">
+        <a class="nav-link text-decoration-none" [routerLink]="['/stocks']">Stocks</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link text-decoration-none" [routerLink]="'/portfolio'">Portfolio</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link text-decoration-none" href="#" (click)="logout()">Logout</a>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+<div class="container">
+  <div class="row">
+    <!-- Left Sidebar: Trending Stocks -->
+    <div class="col-md-3">
+      <div class="trending-stocks">
+        <h3>Trending Stocks</h3>
+        <ul *ngIf="trendingStocks" class="list-group">
+          <li *ngFor="let stock of trendingStocks.coins" class="list-group-item">
+            {{ stock.item.name }}
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Middle Content: Stocks and Coins -->
+    <div class="col-md-9">
+      <h2 class="mb-4">Welcome to the Dashboard!</h2>
+
+      <!-- All Stocks Section -->
+      <div class="all-stocks mb-4">
+        <h3>Stocks</h3>
+        <div class="card-deck">
+          <div class="card" *ngFor="let stock of coins">
+            <div class="card-body">
+              <h4 class="card-title">{{ stock.name }}</h4>
+              <p class="card-text">Price: {{ stock.current_price | currency: 'USD' }}</p>
+              <p class="card-text">Market Cap: {{ stock.market_cap | currency: 'USD' }}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Coins Section -->
+      <div class="coins-container">
+        <h3>Coins</h3>
+        <div class="row">
+          <div class="col-md-4 mb-4" *ngFor="let coin of coins">
+            <div class="card h-100">
+              <div class="card-body">
+                <h4 class="card-title">{{ coin.name }}</h4>
+                <p class="card-text">Price: {{ coin.current_price | currency: 'USD' }}</p>
+                <p class="card-text">Market Cap: {{ coin.market_cap | currency: 'USD' }}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
     </div>
   </div>
 </div>

@@ -1,35 +1,65 @@
 <p>register works!</p>
-<!-- src/app/components/register/register.component.html -->
-<form (ngSubmit)="register()">
-    <label for="username">Username:</label>
-    <input id="username" [(ngModel)]="user.username" name="username" required />
-  
-    <label for="password">Password:</label>
-    <input id="password" [(ngModel)]="user.password" name="password" type="password" required />
-  
-    <label for="email">Email:</label>
-    <input id="email" [(ngModel)]="user.email" name="email" required />
-  
-    <label for="firstName">First Name:</label>
-    <input id="firstName" [(ngModel)]="user.firstName" name="firstName" />
-  
-    <label for="lastName">Last Name:</label>
-    <input id="lastName" [(ngModel)]="user.lastName" name="lastName" />
-    <!-- Add other fields as needed -->
-    <label for="dateOfBirth">Date of Birth:</label>
-    <input id="dateOfBirth" [(ngModel)]="user.dateOfBirth" name="dateOfBirth" />
+<div class="container d-flex justify-content-center align-items-center vh-80 margin-bottom 10px">
+  <div class="card p-4 shadow-lg" style="max-width: 500px; width: 100%;">
+    <h3 class="text-center mb-4">Register</h3>
+    
+    <form (ngSubmit)="register()">
+      <div class="form-group mb-3">
+        <label for="username" class="form-label">Username</label>
+        <input type="text" id="username" class="form-control" [(ngModel)]="user.username" name="username" required  />
+      </div>
+      
 
-    <label for="address">Address:</label>
-    <input id="address" [(ngModel)]="user.address" name="address" />
+      <div class="form-group mb-3">
+        <label for="firstName" class="form-label">First Name</label>
+        <input type="text" id="firstName" class="form-control" [(ngModel)]="user.firstName" name="firstName" />
+      </div>
 
-    <label for="phoneNumber">Phone Number:</label>
-    <input id="phoneNumber" [(ngModel)]="user.phoneNumber" name="phoneNumber" />
+      
+      <div class="form-group mb-3">
+        <label for="lastName" class="form-label">Last Name</label>
+        <input type="text" id="lastName" class="form-control" [(ngModel)]="user.lastName" name="lastName" />
+      </div>
 
-    <label for="profilePictureUrl">Profile Picture URL</label>
-    <input id="profilePictureUrl" [(ngModel)]="user.profilePictureUrl" name="profilePictureUrl" />
+      <div class="form-group mb-3">
+        <label for="password" class="form-label">Password</label>
+        <input type="password" id="password" class="form-control" [(ngModel)]="user.password" name="password" required />
+      </div>
 
-    <!-- <button type="submit">Register</button> -->
-    <!-- <button type="submit" class="btn btn-primary w-100" (click)="navigateToFeature('login')">Register</button> -->
-    <button type="submit" class="btn btn-primary w-100">Register</button>
-  </form>
+      <div class="form-group mb-3">
+        <label for="email" class="form-label">Email</label>
+        <input type="email" id="email" class="form-control" [(ngModel)]="user.email" name="email" required />
+      </div>
+
+      
+      <div class="form-group mb-3">
+        <label for="dateOfBirth" class="form-label">Date of Birth</label>
+        <input type="date" id="dateOfBirth" class="form-control" [(ngModel)]="user.dateOfBirth" name="dateOfBirth" />
+      </div>
+
+      <div class="form-group mb-3">
+        <label for="address" class="form-label">Address</label>
+        <input type="text" id="address" class="form-control" [(ngModel)]="user.address" name="address" />
+      </div>
+
+      <div class="form-group mb-3">
+        <label for="phoneNumber" class="form-label">Phone Number</label>
+        <input type="tel" id="phoneNumber" class="form-control" [(ngModel)]="user.phoneNumber" name="phoneNumber" />
+      </div>
+
+      <div class="form-group mb-4">
+        <label for="profilePictureUrl" class="form-label">Profile Picture URL</label>
+        <input type="url" id="profilePictureUrl" class="form-control" [(ngModel)]="user.profilePictureUrl" name="profilePictureUrl" />
+      </div>
+
+      <button type="submit" class="btn btn-primary w-100">Register</button>
+      <p class="text-center mt-3">Already have an account? 
+        <a href="#" class="text-decoration-none" [routerLink]="['/login']">Login here</a>
+      </p>
+    </form>
+
+ 
+  </div>
+</div>
+
   

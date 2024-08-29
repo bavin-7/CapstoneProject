@@ -2,12 +2,12 @@ import { Component } from '@angular/core';
 import { LoginRequest } from '../login-request.model';
 import { UserService } from '../user.service';
 import { FormsModule } from '@angular/forms';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [FormsModule,],
+  imports: [FormsModule,RouterLink],
   templateUrl: './login.component.html',
   styleUrl: './login.component.css'
 })
@@ -20,7 +20,7 @@ export class LoginComponent {
     this.userService.login(this.loginRequest).subscribe({
       next: (response) => {
         console.log('Login successful. User ID:', response);
-        this.router.navigate(['/stocks']);
+        this.router.navigate(['/dashboard']);
       },
       error: (error) => {
         console.error('Error logging in:', error);
@@ -29,10 +29,10 @@ export class LoginComponent {
     });
   }
 
-  navigateToFeature(feature: string) {
-    // Navigate to the route based on the feature parameter
-    this.router.navigate([`/${feature}`]);
+  // navigateToFeature(feature: string) {
+  //  Navigate to the route based on the feature parameter
+  //   this.router.navigateByUrl(`/${feature}`);
  
 }
   
-}
+
