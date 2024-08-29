@@ -1,0 +1,30 @@
+<p>dashboard works!</p>
+<!-- dashboard.component.html -->
+<nav class="navbar">
+  <ul>
+    <li><a routerLink="/stocks">Stocks</a></li>
+    <li><a routerLink="/portfolio">Portfolio</a></li>
+    <li><a (click)="logout()">Logout</a></li>
+  </ul>
+</nav>
+
+<div class="container">
+  <h2>Welcome to the Dashboard!</h2>
+
+  <div class="trending-stocks">
+    <h3>Trending Stocks</h3>
+    <ul *ngIf="trendingStocks">
+      <li *ngFor="let stock of trendingStocks.coins">
+        {{ stock.item.name }}
+      </li>
+    </ul>
+
+  <div class="coins-container">
+    <h3>Coins</h3>
+    <div class="coin" *ngFor="let coin of coins">
+      <h4>{{ coin.name }}</h4>
+      <p>Price: {{ coin.current_price | currency:'USD' }}</p>
+      <p>Market Cap: {{ coin.market_cap | currency:'USD' }}</p>
+    </div>
+  </div>
+</div>
