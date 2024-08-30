@@ -11,7 +11,17 @@ import { StockDetailComponent } from './stock-detail/stock-detail.component';
 import { StockListComponent } from './stock-list/stock-list.component';
 import { MarketTrendsComponent } from './market-trends/market-trends.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
-// import { StockService } from './stock.service';
+// import { MatDialogModule } from '@angular/material/dialog';
+// import { MatFormFieldModule } from '@angular/material/form-field';
+// import { MatInputModule } from '@angular/material/input';
+// import { MatSelectModule } from '@angular/material/select';
+// import { MatButtonModule } from '@angular/material/button';
+// import { MatIconModule } from '@angular/material/icon';
+import { PortfolioContainerComponent } from './Portfolio/portfolio-container/portfolio-container.component';
+import { PortfolioAlertComponent } from './Portfolio/portfolio-alert/portfolio-alert.component';
+
+//import { StockService } from './stock.service';
+
 
 
 
@@ -19,7 +29,8 @@ import { DashboardComponent } from './dashboard/dashboard.component';
   selector: 'app-root',
   standalone: true,
   imports: [RouterOutlet, FormsModule, CommonModule, LoginComponent, UserDetailsComponent, RegisterComponent
-           , StockDetailComponent, StockListComponent, MarketTrendsComponent, DashboardComponent ],
+           , StockDetailComponent, StockListComponent, MarketTrendsComponent, DashboardComponent, PortfolioAlertComponent,
+           PortfolioContainerComponent,],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
