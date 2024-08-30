@@ -3,36 +3,41 @@ import { LoginRequest } from '../login-request.model';
 import { UserService } from '../user.service';
 import { FormsModule } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [FormsModule,RouterLink],
+  imports: [FormsModule, RouterLink, CommonModule],
   templateUrl: './login.component.html',
   styleUrl: './login.component.css'
 })
 export class LoginComponent {
   loginRequest: LoginRequest = { email: '', password: '' };
+  emailError: boolean = true;
+  passwordError: boolean = true;
 
-  constructor(private userService: UserService, private router: Router) { }
+  constructor(private userService: UserService, private router: Router) {}
 
-  login() {
-    this.userService.login(this.loginRequest).subscribe({
-      next: (response) => {
-        console.log('Login successful. User ID:', response);
-        this.router.navigate(['/dashboard']);
-      },
-      error: (error) => {
-        console.error('Error logging in:', error);
-        // Optionally, show an error message or handle the error
-      }
-    });
+  validateInputs(): boolean {
+    this.emailError = !this.loginRequest.email || !/^\S+@\S+\.\S+$/.test(this.loginRequest.email);
+    this.passwordError = !this.loginRequest.password || this.loginRequest.password.length < 6;
+    return !(this.emailError || this.passwordError);
   }
 
-  // navigateToFeature(feature: string) {
-  //  Navigate to the route based on the feature parameter
-  //   this.router.navigateByUrl(`/${feature}`);
- 
+  login() {
+    if (this.validateInputs()) {
+      this.userService.login(this.loginRequest).subscribe({
+        next: (response) => {
+          console.log('Login successful. User ID:', response);
+          this.router.navigate(['/dashboard']);
+        },
+        error: (error) => {
+          console.error('Error logging in:', error);
+        }
+      });
+    } else {
+      console.error('Validation failed. Please enter valid email and password.');
+    }
+  }
 }
-  
-
