@@ -14,8 +14,9 @@ import { CommonModule } from '@angular/common';
 })
 export class LoginComponent {
   loginRequest: LoginRequest = { email: '', password: '' };
-  emailError: boolean = true;
-  passwordError: boolean = true;
+  emailError: boolean = false;
+  passwordError: boolean = false;
+  loginError: string | null = null;
 
   constructor(private userService: UserService, private router: Router) {}
 
@@ -28,16 +29,25 @@ export class LoginComponent {
   login() {
     if (this.validateInputs()) {
       this.userService.login(this.loginRequest).subscribe({
-        next: (response) => {
-          console.log('Login successful. User ID:', response);
-          this.router.navigate(['/dashboard']);
+        next: (userId) => {
+          if (userId) {
+            console.log('Login successful. User ID:', userId);
+            sessionStorage.setItem('userId', userId); // Store user ID in sessionStorage
+            this.router.navigate(['/dashboard']); // Redirect to dashboard
+          } else {
+            // this.loginError = 'Invalid email or password. Please try again.';
+            console.error('Invalid email or password. Please try again.');
+          }
         },
         error: (error) => {
           console.error('Error logging in:', error);
+          this.loginError = 'An error occurred during login. Please try again later.';
         }
       });
     } else {
-      console.error('Validation failed. Please enter valid email and password.');
+      this.loginError = 'Validation failed. Please enter a valid email and password.';
+      console.error(this.loginError);
     }
   }
 }
+

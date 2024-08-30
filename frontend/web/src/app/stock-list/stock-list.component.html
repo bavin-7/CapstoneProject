@@ -1,52 +1,15 @@
-<p>stock-list works!</p>
-<div class="d-flex flex-wrap justify-content-center gap-3 mt-3">
-  <div class="card shadow-sm" 
-       style="width: 100%; max-width: 600px; height: 150px; display: flex; flex-direction: row; align-items: center;" 
-       *ngFor="let stock of stocks" 
-       (click)="viewStockDetails(stock.id)">
-    <img class="card-img-left" 
-         [src]="stock.image" 
-         alt="{{stock.name}}" 
-         style="width: 100px; height: auto; object-fit: contain; margin: 15px;">
-    <div class="card-body d-flex flex-column justify-content-center">
-      <h5 class="card-title text-uppercase">{{ stock.symbol }}</h5>
-      <p class="mb-1">{{ stock.name }}</p>
-      <p class="mb-1 font-weight-bold">{{ stock.current_price | currency: 'USD' }}</p>
-      <p class="text-muted">Market Cap: {{ stock.market_cap | number }}</p>
+<h1>Today's Cryptocurrency Prices by Market Cap</h1>
+<div class="stock-list-container">
+  <div class="stock-card" *ngFor="let stock of stocks" (click)="viewStockDetails(stock.id)">
+    <img class="stock-image" [src]="stock.image" alt="{{stock.name}}">
+    <div class="stock-info">
+      <h5 class="stock-symbol">{{ stock.symbol }}</h5>
+      <p class="stock-name">{{ stock.name }}</p>
+      <p class="stock-price">{{ stock.current_price | currency: 'USD' }}</p>
+      <p class="stock-market-cap">Market Cap: {{ stock.market_cap | number }}</p>
     </div>
   </div>
 </div>
 
 
-<!-- <table>
-    <thead>
-      <tr>
-        <th>Symbol</th>
-        <th>Name</th>
-        <th>Price</th>
-        <th>Market Cap</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let stock of stocks" (click)="viewStockDetails(stock.id)">
-        <img [src]="stock.image" alt="{{stock.name}}" width="50">
-        <td>{{ stock.symbol }}</td>
-        <td>{{ stock.name }}</td>
-        <td>{{ stock.current_price | currency: 'INR' }}</td>
-        <td>{{ stock.market_cap | number }}</td>
-      </tr>
-    </tbody>
-  </table> -->
 
-  <!-- <div class="d-flex flex-row gap-4 bg-primary-subtle flex-wrap">
-    <div class="card w-100 d-flex flex-row gap-2" style="height: 100px;" *ngFor="let stock of stocks" (click)="viewStockDetails(stock.id)">
-      <img class="card-img w-25"  [src]="stock.image" alt="{{stock.name}}" width="50">
-        <div class="">
-          <p class="card-title">{{ stock.symbol }}</p>
-        <p>{{ stock.name }}</p>
-        <p>{{ stock.current_price | currency: 'INR' }}</p>
-        <p>{{ stock.market_cap | number }}</p>
-        </div>
-    </div>
-  </div>
-   -->

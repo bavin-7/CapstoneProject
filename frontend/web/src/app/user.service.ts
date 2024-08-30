@@ -11,7 +11,7 @@ import { LoginRequest } from '../app/login-request.model';
 export class UserService {
   private baseUrl = 'http://localhost:9003/users';  // Adjust based on your backend URL
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {}
 
   registerUser(user: User): Observable<User> {
     return this.http.post<User>(`${this.baseUrl}/register`, user);
@@ -22,6 +22,6 @@ export class UserService {
   }
 
   login(loginRequest: LoginRequest): Observable<string> {
-    return this.http.post(`${this.baseUrl}/login`, loginRequest, { responseType: 'text' });
+    return this.http.post<string>(`${this.baseUrl}/login`, loginRequest,{responseType:'text' as 'json'});
   }
 }
